@@ -1,0 +1,13 @@
+Ideas for Data Interpolation:
+1. Preliminary idea was fill in missing data with 0's
+2. Find some kind of "default" value that makes sense for most features. Along the lines of the intention I had with filling in values as 0 initially.
+3. Get rid of sparse columns; only keep features with, ex. >90% of rows contain a value for this feature.
+4. Remove all columns without 100% density, then remove all rows without 100% density of selected columns (listwise deletion).
+5. Look at other datasets-- is questionnaire particularly sparse?
+6. Perform unsupervised learning to fill in some sparse features. Then use supervised learning to predict another outcome (i.e. the original smoking prediction task).
+	a) We should use regression rather than some kind of mean substitution as this has been shown to work better for multivariate analysis.
+7. Multiple imputation seems the most promising: https://en.wikipedia.org/wiki/Imputation_(statistics)
+	a) If missing data is missing at random (we can try to prove this), use MICE (Multiple Imputation by Chained Equations)
+	b) Single imputation doesn't take into account additional uncertainty of imputed data; multiple imputation solves this problem.
+	c) Look at existing packages for this
+	d) How do we want to use this-- obviously not for all columns with missing data, maybe narrow it down first? Test different threshold parameters of sparsity and different organizations of missing column data.  
